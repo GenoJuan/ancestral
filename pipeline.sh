@@ -7,7 +7,8 @@
 # General description: 
 
 # Dependencies: 
-# perl v5.24.0
+# Perl v5.24.0
+# Python v2.7.13 
 # BLAST v2.6.0+
 
 ###########################################################################################################
@@ -62,12 +63,17 @@ makeblastdb -in outfile.fasta -dbtype prot
 
 blastp -db outfile.fasta -query TBP_seed.fasta -out outfile_blast.out -outfmt 6 -evalue 1e-50
 
-more outfile_blast.out | cut -f2 | sort | uniq > outfile_filtered.csv
+# Retain the information redarding to the header, start and end positions of the sequences signficatively aligned.
 
-# run R merging_results.r
+more outfile_blast.out | cut -f2,9,10 | sort  > outfile_filtered.csv
 
-perl /home/jarias/Escritorio/filter_database.pl outfile.fasta outfile_filtered.csv > tbp_filtered.fasta
+# For the retained sequences slice the sub-sequences aligned with the query.
+# For those sequences aligned to two or more queries, select the minimal start position and the maximum end position.
 
-makeblastdb -in tbp_filtered.fasta -dbtype prot
+python slice_filtered_sequences.py > outfile_sliced_filtered.fasta
 
-blastp -db tbp_filtered.fasta -query tbp_filtered.fasta -out outfile_blast.out -outfmt 6 -evalue 1e-50
+# makeblastdb: create a BLAST database using the sliced filtered TBP sequences
+# blastp: perform protein sequence alignment all-against-all.
+
+makeblastdb -in outfile_sliced_filtered.fasta -dbtype prot
+blastp -db outfile_sliced_filtered.fasta -query outfile_sliced_filtered.fasta -out outfile_blast.out -outfmt 6 -evalue 1e-50
