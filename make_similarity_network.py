@@ -17,7 +17,7 @@ dictionario = {}
 f1 = open(file_name1, "r")
 
 for line in f1:
-	seq_ids.append(line.strip())
+	seq_ids.append(line.split('\t')[0])
 
 f1.close()
 
@@ -44,8 +44,8 @@ f3 = open(file_name3, "r")
 for line in f3:
 	line = line.strip()
 	data = re.split('\t', line)
-	l1 = data[0]
-	l2 = data[1]
+	l1 = data[1]
+	l2 = data[0]
 	dictionario[l2] = l1
 
 f3.close()
