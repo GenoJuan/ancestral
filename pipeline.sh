@@ -1,4 +1,24 @@
-perl change_id_ancestral_TBP.pl sequence.fasta
+# This script has the purpouse to reproduce the pipeline for ancestral TBP sequence reconstruction.
+# Developer: Juan A. Arias Del Angel (Universidad Nacional Autónoma de México)
+# Supervisor and original idea: (Universidad Autónoma del Estado de Morelos)
+# Contact: jariasdelangel@gmail.com
+# Last modification: 05-Nov-2017
+
+# General description: 
+
+# Dependencies: 
+# perl v5.24.0
+
+ 
+###########################################################################################################
+##########################              Mac OS X Yosemite v.10.10.5              ##########################
+###########################################################################################################
+
+### The pipeline starts from a protein sequence collection retrieved from NCBI database. 
+### All the sequences in the collection are retrieved under the key "TATA-box binding protein".
+
+# Change 
+perl 1.change_id_ancestral_TBP.pl TBP_sequences.fasta
 
 makeblastdb -in outfile.fasta -dbtype prot
 
