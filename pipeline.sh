@@ -10,7 +10,6 @@
 # perl v5.24.0
 # BLAST v2.6.0+
 
- 
 ###########################################################################################################
 ##########################              Mac OS X Yosemite v.10.10.5              ##########################
 ###########################################################################################################
@@ -37,6 +36,29 @@ perl 1.change_id_ancestral_TBP.pl TBP_sequences.fasta
 # '*' stands for the original name of -in.
 
 makeblastdb -in outfile.fasta -dbtype prot
+
+# blastp: perform protein sequence alignment.
+# Input:
+# -db: a character string specifying the database.
+# -query: a character string specifying the query sequences.
+# -out: a tab-limited table containing the results of sequence alignment.
+# -outmft: a numeric value specifying the format of -out.
+### - Column 1: query_sequence
+### - Column 2: database_sequence
+### - Column 3: identity porcentage
+### - Column 4: alignment length
+### - Column 5: number of mismatchs
+### - Column 6: number of gaps
+### - Column 7: start of the aligned region of query sequence
+### - Column 8: end of the aligned region of query sequence
+### - Column 9: start of the aligned region of sequence in the database
+### - Column 10: end of the aligned region of sequence in the database
+### - Column 11: alignment e-value
+### - Column 12: alignment bitscore
+# -evalue: a threshold value for the e-value alignment.
+# Output:
+# *.pin, *.psq, *.phr: database generated files by BLAST to perform alignments. 
+# '*' stands for the original name of -in.
 
 blastp -db outfile.fasta -query TBP_seed.fasta -out outfile_blast.out -outfmt 6 -evalue 1e-50
 
