@@ -17,7 +17,14 @@
 ### The pipeline starts from a protein sequence collection retrieved from NCBI database. 
 ### All the sequences in the collection are retrieved under the key "TATA-box binding protein".
 
-# Change 
+# 1.change_id_ancestral_TBP.pl: change the original header for a numeric header.
+# Input:
+# - TBP_sequences.fasta: a file containing a sequence collection annotated as "TATA-box binding protein".
+# Output:
+# - outfile.fasta: a file containing the same collection of sequences but with a modified header.
+# - oufile.csv   : a tab-limited table containing in the first column the modified header and in
+#                  the second coolumn the respective original header.
+
 perl 1.change_id_ancestral_TBP.pl TBP_sequences.fasta
 
 makeblastdb -in outfile.fasta -dbtype prot
