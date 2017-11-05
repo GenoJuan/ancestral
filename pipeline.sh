@@ -8,6 +8,7 @@
 
 # Dependencies: 
 # perl v5.24.0
+# BLAST v2.6.0+
 
  
 ###########################################################################################################
@@ -26,6 +27,14 @@
 #                  the second coolumn the respective original header.
 
 perl 1.change_id_ancestral_TBP.pl TBP_sequences.fasta
+
+# makeblastdb
+# Input:
+# -in: a file containing the same collection of sequences but with a modified header.
+# -dbtype: a character string specifing the type of sequence contained in -in argument.
+# Output:
+# *.pin, *.psq, *.phr: database generated files by BLAST to perform alignments. 
+# '*' stands for the original name of -in.
 
 makeblastdb -in outfile.fasta -dbtype prot
 
