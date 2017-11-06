@@ -50,9 +50,10 @@ for line in f3:
 
 f3.close()
 
+# usando la variable diccionario se puede conocer los nombre reales de las secuencias.
 
 sub = 1
 for component in list(nx.connected_components(similarity_network)):
 	for c in component:
-		print sub, dictionario[c]
+		print sub, c, dictionario[c]
 	sub = sub + 1
