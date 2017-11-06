@@ -77,3 +77,7 @@ python slice_filtered_sequences.py > outfile_sliced_filtered.fasta
 
 makeblastdb -in outfile_sliced_filtered.fasta -dbtype prot
 blastp -db outfile_sliced_filtered.fasta -query outfile_sliced_filtered.fasta -out outfile_blast.out -outfmt 6 -evalue 1e-50
+
+python make_similarity_network.py > cluster_assignment.csv
+
+perl select_sequences.pl outfile_sliced_filtered.fasta cluster_assignment.csv > TBP_final.fasta
