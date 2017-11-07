@@ -81,3 +81,5 @@ blastp -db outfile_sliced_filtered.fasta -query outfile_sliced_filtered.fasta -o
 python make_similarity_network.py > cluster_assignment.csv
 
 perl select_sequences.pl outfile_sliced_filtered.fasta cluster_assignment.csv > TBP_final.fasta
+
+perl change_ids.pl cluster_assignment.csv > tbp_final_ids.csv
